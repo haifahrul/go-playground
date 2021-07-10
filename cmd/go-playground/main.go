@@ -15,7 +15,9 @@ func main() {
 	var err error
 
 	/**
-	 * Uncomment below if you want to use file .env
+	 * If want to change specific location file .env
+	 * you can use this:
+	 * `godotenv.Load(os.ExpandEnv("../PATH_TO_YOUR_FOLDER/.env"))`
 	 */
 	err = godotenv.Load()
 	if err != nil {
@@ -23,14 +25,17 @@ func main() {
 	}
 
 	/**
-	 * Uncomment below if you want to connection databse SQL
+	 * Uncomment below if you want to connect to databse PostgreSQL
 	 */
-	// db.Conn, _ = helper.PostgreSql.Connect()
+	// db.Conn, err = postgres.Get.Connect()
+	// if err != nil {
+	// 	log.Fatal("There was error when connecting to database.", err)
+	// }
 
-	fmt.Fprintf("Listing for requests at %s:%s", os.Getenv("HOST"), os.Getenv("PORT"))
+	fmt.Printf("Listing for requests at %s:%s", os.Getenv("HOST"), os.Getenv("PORT"))
 
 	err = http.ListenAndServe(
-		":8080",
+		":"+os.Getenv("PORT"),
 		router.Router,
 	)
 

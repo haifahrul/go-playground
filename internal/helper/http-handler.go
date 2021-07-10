@@ -7,8 +7,7 @@ import (
 )
 
 type ResponseJSON struct {
-	w        http.ResponseWriter
-	HttpCode int
+	HTTPCode int
 	Status   string      `json:"status"`
 	Message  interface{} `json:"message"`
 	Data     interface{} `json:"data"`
@@ -25,7 +24,7 @@ type httpHandler struct {
 }
 
 //httpHandlerHandler Looks like for sending response in JSON format
-func (*httpHandler) ResponseJSON(in ResponseJSON) (out *ResponseJSON) {
+func (*httpHandler) ResponseJSON(w http.ResponseWriter, in ResponseJSON) (out *ResponseJSON) {
 	var err error
 
 	res, err := json.Marshal(in.Data)
@@ -36,9 +35,9 @@ func (*httpHandler) ResponseJSON(in ResponseJSON) (out *ResponseJSON) {
 		out.Message = http.StatusText(http.StatusInternalServerError)
 	}
 
-	in.w.Header().Set("Content-Type", "application/json")
-	in.w.WriteHeader(in.HttpCode)
-	in.w.Write(res)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(in.HTTPCode)
+	w.Write(res)
 
 	return
 }
