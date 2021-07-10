@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/haifahrul/internal/helper/env"
+	"github.com/haifahrul/go-playground/internal/helper/env"
 	"github.com/jmoiron/sqlx"
 	"github.com/jmoiron/sqlx/reflectx"
 	_ "github.com/lib/pq"
