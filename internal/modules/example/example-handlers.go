@@ -18,7 +18,7 @@ func (h *exampleHandler) Create(w http.ResponseWriter, r *http.Request) {
 		"message": "This is an example of HTTP Request with method GET and response JSON",
 	}
 
-	helper.HttpHandler.ResponseJSON(w, helper.ResponseJSON{
+	helper.HttpHandler.ResponseJSON(w, &helper.ResponseJSON{
 		HTTPCode: 200,
 		Status:   "OK",
 		Message:  "Data has been create",
@@ -39,7 +39,7 @@ func (h *exampleHandler) ReadAll(w http.ResponseWriter, r *http.Request) {
 		})
 	}
 
-	helper.HttpHandler.ResponseJSON(w, helper.ResponseJSON{
+	helper.HttpHandler.ResponseJSON(w, &helper.ResponseJSON{
 		HTTPCode: 200,
 		Status:   "OK",
 		Message:  "Data founded",
@@ -52,7 +52,7 @@ func (h *exampleHandler) ReadOne(w http.ResponseWriter, r *http.Request) {
 	id := params["id"]
 
 	if id == "" {
-		helper.HttpHandler.ResponseJSON(w, helper.ResponseJSON{
+		helper.HttpHandler.ResponseJSON(w, &helper.ResponseJSON{
 			HTTPCode: http.StatusBadRequest,
 			Status:   "Error",
 			Message:  "Param id is required",
@@ -68,7 +68,7 @@ func (h *exampleHandler) ReadOne(w http.ResponseWriter, r *http.Request) {
 		"message": "This is an example of HTTP Request with method GET and response JSON",
 	}
 
-	helper.HttpHandler.ResponseJSON(w, helper.ResponseJSON{
+	helper.HttpHandler.ResponseJSON(w, &helper.ResponseJSON{
 		HTTPCode: 200,
 		Status:   "OK",
 		Message:  "Data founded",
@@ -81,7 +81,7 @@ func (h *exampleHandler) Update(w http.ResponseWriter, r *http.Request) {
 	id := params["id"]
 
 	if id == "" {
-		helper.HttpHandler.ResponseJSON(w, helper.ResponseJSON{
+		helper.HttpHandler.ResponseJSON(w, &helper.ResponseJSON{
 			HTTPCode: http.StatusBadRequest,
 			Status:   "Error",
 			Message:  "Param id is required",
@@ -97,7 +97,7 @@ func (h *exampleHandler) Update(w http.ResponseWriter, r *http.Request) {
 		"message": "This is an example of HTTP Request with method GET and response JSON",
 	}
 
-	helper.HttpHandler.ResponseJSON(w, helper.ResponseJSON{
+	helper.HttpHandler.ResponseJSON(w, &helper.ResponseJSON{
 		HTTPCode: 200,
 		Status:   "OK",
 		Message:  "Data has been update",
@@ -110,7 +110,7 @@ func (h *exampleHandler) Delete(w http.ResponseWriter, r *http.Request) {
 	id := params["id"]
 
 	if id == "" {
-		helper.HttpHandler.ResponseJSON(w, helper.ResponseJSON{
+		helper.HttpHandler.ResponseJSON(w, &helper.ResponseJSON{
 			HTTPCode: http.StatusBadRequest,
 			Status:   "Error",
 			Message:  "Param id is required",
@@ -126,7 +126,7 @@ func (h *exampleHandler) Delete(w http.ResponseWriter, r *http.Request) {
 		"message": "This is an example of HTTP Request with method GET and response JSON",
 	}
 
-	helper.HttpHandler.ResponseJSON(w, helper.ResponseJSON{
+	helper.HttpHandler.ResponseJSON(w, &helper.ResponseJSON{
 		HTTPCode: 200,
 		Status:   "OK",
 		Message:  "Data has been delete",
