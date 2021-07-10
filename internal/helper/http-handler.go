@@ -13,12 +13,6 @@ type ResponseJSON struct {
 	Data     interface{} `json:"data"`
 }
 
-// type HTTPResponseRes struct {
-// 	Status  string      `json:"status"`
-// 	Message interface{} `json:"message"`
-// 	Data    interface{} `json:"data"`
-// }
-
 //httpHandler Helper regarding Environment variables
 type httpHandler struct {
 }
