@@ -1,6 +1,7 @@
 package example
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -132,6 +133,58 @@ func (h *exampleHandler) Delete(w http.ResponseWriter, r *http.Request) {
 		Message:  "Data has been delete",
 		Data:     data,
 	})
+}
+
+func (h *exampleHandler) Task1(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	name := params["name"]
+
+	var getName = func(in string) string {
+		a := "Your name is: "
+		return fmt.Sprintf(a + in)
+	}
+
+	helper.HttpHandler.ResponseJSON(w, &helper.ResponseJSON{
+		HTTPCode: 200,
+		Status:   "OK",
+		Message:  "Data task 1",
+		Data:     getName(name),
+	})
+}
+
+func (h *exampleHandler) Task2(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	name := params["name"]
+
+	var p *string
+
+	var getName = func(in *string) {
+		temp := fmt.Sprintf("Your name is: %v", *in)
+		p = &temp
+	}
+
+	getName(&name)
+
+	helper.HttpHandler.ResponseJSON(w, &helper.ResponseJSON{
+		HTTPCode: 200,
+		Status:   "OK",
+		Message:  "Data task 1",
+		Data:     p,
+	})
+}
+
+type DataJSON struct {
+	ID    string `json:"id"`
+	Title string `json:"title"`
+}
+
+type DataXML struct {
+	ID    string `xml:"id"`
+	Title string `xml:"title"`
+}
+
+func test3(in interface{}) {
+
 }
 
 // ExampleHandler variable singleton
